@@ -1,0 +1,17 @@
+#!/bin/sh
+set -eu
+
+if [ "${RUST_LOG+x}" != x ]; then
+  RUST_LOG=warn
+  export RUST_LOG
+fi
+
+bin_dir=$(CDPATH= cd -P "$(dirname "$0")" && pwd)
+real_bin=${CODEX_REAL_BIN:-"$bin_dir/codex.real"}
+
+if [ ! -x "$real_bin" ]; then
+  printf 'Codex native binary is missing or not executable: %s\n' "$real_bin" >&2
+  exit 1
+fi
+
+exec "$real_bin" "$@"

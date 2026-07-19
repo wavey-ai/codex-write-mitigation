@@ -1,0 +1,12 @@
+#!/bin/sh
+set -eu
+
+if [ "${RUST_LOG+x}" != x ]; then
+  RUST_LOG=warn
+  export RUST_LOG
+fi
+
+codex_home=${CODEX_HOME:-"$HOME/.codex"}
+package_bin=${CODEX_PACKAGE_BIN:-"$codex_home/packages/standalone/current/bin/codex"}
+
+exec "$package_bin" "$@"

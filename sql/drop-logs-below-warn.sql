@@ -1,0 +1,12 @@
+BEGIN IMMEDIATE;
+
+DROP TRIGGER IF EXISTS codex_drop_logs_below_warn;
+
+CREATE TRIGGER codex_drop_logs_below_warn
+BEFORE INSERT ON logs
+WHEN NEW.level IN ('TRACE', 'DEBUG', 'INFO')
+BEGIN
+  SELECT RAISE(IGNORE);
+END;
+
+COMMIT;
