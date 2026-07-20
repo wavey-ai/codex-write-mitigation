@@ -42,7 +42,7 @@ By default the installer manages:
 
 The previous command entrypoint is moved to a timestamped
 `*.before-write-mitigation` backup. The package's native executable becomes
-`codex.real`; the replacement package entrypoint sets the log filter and then
+`codex.real`. The replacement package entrypoint sets the log filter and then
 executes that binary.
 
 Set `CODEX_HOME`, `CODEX_COMMAND_BIN`, `CODEX_PACKAGE_BIN`, or `CODEX_LOG_DB` to
@@ -78,7 +78,7 @@ The verifier confirms that an `INFO` insert is rejected and compares the
 
 A zero delta during ordinary Codex activity indicates that verbose traffic is
 not reaching the table. A nonzero delta can be legitimate when Codex records a
-`WARN` or `ERROR`; inspect retained levels with:
+`WARN` or `ERROR`. Inspect retained levels with:
 
 ```sh
 sqlite3 ~/.codex/logs_2.sqlite \
